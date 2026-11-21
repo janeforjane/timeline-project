@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timeline — карта временной линии</title>
+    <style>
+        body {
+            font-family: monospace;
+            background: #0b0b0f;
+            color: #d4af37;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem;
+        }
+        input {
+            width: 20rem;
+            padding: 0.5rem;
+            margin-right: 0.5rem;
+        }
+        button {
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+        }
+        pre {
+            margin-top: 1.5rem;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <h1>ВРЕМЕННОЕ УПРАВЛЕНИЕ</h1>
+    <form id="decision-form">
+        <label for="decision">Введи решение:</label>
+        <input type="text" id="decision" name="decision" placeholder="Например: согласиться на повышение" required>
+        <button type="submit">Построить линию</button>
+    </form>
+    <pre id="result"></pre>
+    <script>
+        document.getElementById('decision-form').addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const decision = document.getElementById('decision').value;
+            const response = await fetch('/api/decision', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({decision})
+            });
+            const data = await response.json();
+            document.getElementById('result').textContent = JSON.stringify(data, null, 2);
+        });
+    </script>
+</body>
+</html>
