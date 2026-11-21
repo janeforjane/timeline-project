@@ -11,4 +11,4 @@
 - [x] `mvn test` и `mvn checkstyle:check` зелёные
 
 ## Дальше
-- [ ] e2e-тест (Playwright)
+- [x] e2e-тест (Playwright)
