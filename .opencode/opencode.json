@@ -20,13 +20,33 @@
       "rm -r*": "deny"
     },
     "read": {
-      ".env": "deny"
+      ".env": "deny",
+      "/home/jane/edu/otus/llm/timeline-project/.opencode/gsd-core/*": "allow"
+    },
+    "external_directory": {
+      "/home/jane/edu/otus/llm/timeline-project/.opencode/gsd-core/*": "allow"
     }
   },
   "mcp": {
     "playwright": {
       "type": "local",
-      "command": ["npx", "-y", "@playwright/mcp@latest"],
+      "command": [
+        "npx",
+        "-y",
+        "@playwright/mcp@latest"
+      ],
+      "enabled": true
+    },
+    "gsd": {
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "-p",
+        "@opengsd/gsd-core",
+        "gsd-mcp-server",
+        "--no-prompts"
+      ],
       "enabled": true
     }
   }

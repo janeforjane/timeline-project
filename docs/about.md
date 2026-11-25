@@ -1,4 +1,4 @@
-# О проекте — ДЗ#3 «Настройка AI-ориентированной среды»
+# ДЗ#3 «Настройка AI-ориентированной среды»
 
 ## Стек и суть
 Веб-приложение для визуализации дерева последствий решений (эстетика TVA из «Локи»).
@@ -72,3 +72,41 @@ JUnit 5 · Checkstyle · Spotless. Агент: OpenCode 1.19.0 на DeepSeek.
 ![e2e-green-1.png](screenshots/e2e-green-1.png)
 
 ![e2e-green-2.png](screenshots/e2e-green-2.png)
+
+
+---
+
+# ДЗ#6 — агентно-ориентированный пайплайн (GSD)
+
+## Что сделано (по 5 требованиям)
+
+1. **GSD + документы проекта** — установлен `@opengsd/gsd-core` (локально, `--opencode`), проект инициализирован.
+2. **Память** — `STATE.md`/`CONTEXT.md` (GSD) + handoff `docs/plan.md` / `docs/memory.md`.
+3. **Команды + hooks** — `/gsd-*`, плагин `gsd-core.js`, guard-хуки GSD (+ свой `project-guard.ts`).
+4. **Управление контекстом** — <TODO: compaction + usage до/после>.
+5. **Discovery пройден** — требования и roadmap (`.planning/`).
+
+## Как повторить проверку
+
+**Шаг 0 — установка.** Из корня проекта:
+```bash
+npx @opengsd/gsd-core@latest --opencode --local
+```
+Перезапустить opencode → /gsd-help (появились команды /gsd-*).
+команды /gsd-*
+
+**Шаг 1 — карта кода.** /gsd-map-codebase → .planning/codebase/ (7 файлов: STACK, ARCHITECTURE, STRUCTURE, CONVENTIONS, TESTING, INTEGRATIONS, CONCERNS).
+codebase map
+![gsd-codebase-map.png](screenshots/gsd-codebase-map.png)
+
+**Шаг 2 — настройка.** /gsd-settings → профиль моделей inherit (DeepSeek), TDD On, Auto-Advance Off, коммит .planning/ On, остальное дефолт.
+настройки GSD
+![gsd-settings.png](screenshots/gsd-settings.png)
+
+**Шаг 3 — инициализация проекта.** /gsd-new-project → вопросы (Полный MVP, PostgreSQL сразу, вертикальный MVP) → созданы PROJECT.md, REQUIREMENTS.md (16 требований v1), ROADMAP.md (4 фазы), STATE.md.
+артефакты / ROADMAP
+![gsd-roadmap.png](screenshots/gsd-roadmap.png)
+
+**Проверка результата.** 
+mvn test и mvn checkstyle:check зелёные; 
+.planning/config.json — inherit, auto_advance: false, tdd: true.

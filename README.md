@@ -25,3 +25,15 @@ JUnit 5 · Checkstyle · Spotless. Агент разработки: OpenCode 1.1
 
 ```bash
 mvn spring-boot:run    # http://localhost:8080
+```
+
+## Текущее состояние (модуль 2 — GSD)
+
+В проект внедрён GSD-пайплайн (Git. Ship. Done): фазы Discuss → Plan → Execute → Verify → Ship,
+артефакты в `.planning/` (PROJECT / REQUIREMENTS / ROADMAP / STATE), память между сессиями.
+
+- Установка GSD (движок не в git): `npx @opengsd/gsd-core@latest --opencode --local`
+- Команды: `/gsd-help`, `/gsd-progress`, `/gsd-new-project`, `/gsd-onboard`, `/gsd-discuss-phase`, `/gsd-plan-phase`, `/gsd-execute-phase`, `/gsd-verify-work`
+- Roadmap проекта — 4 фазы (LLM+ввод → Дерево → Персистентность → Карта+история): `.planning/ROADMAP.md`
+
+Подробный отчёт по ДЗ и инструкция «как повторить проверку» — `docs/about.md`.
