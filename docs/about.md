@@ -82,11 +82,11 @@ JUnit 5 · Checkstyle · Spotless. Агент: OpenCode 1.19.0 на DeepSeek.
 
 1. **GSD + документы проекта** — установлен `@opengsd/gsd-core` (локально, `--opencode`), проект инициализирован.
 2. **Память** — `STATE.md`/`CONTEXT.md` (GSD) + handoff `docs/plan.md` / `docs/memory.md`.
-3. **Команды + hooks** — `/gsd-*`, плагин `gsd-core.js`, guard-хуки GSD (+ свой `project-guard.ts`).
-4. **Управление контекстом** — <TODO: compaction + usage до/после>.
+3. **Команды + hooks** — `/gsd-*`, плагин `gsd-core.js`, хуки GSD (+ свой `project-guard.ts`).
+4. **Управление контекстом** — compaction + usage до/после.
 5. **Discovery пройден** — требования и roadmap (`.planning/`).
 
-## Как повторить проверку
+## 1. GSD 
 
 **Шаг 0 — установка.** Из корня проекта:
 ```bash
@@ -110,3 +110,58 @@ codebase map
 **Проверка результата.** 
 mvn test и mvn checkstyle:check зелёные; 
 .planning/config.json — inherit, auto_advance: false, tdd: true.
+
+## 2. Память + чекпойнты
+
+Память агента реализована файлами, два механизма.
+
+    Основной источник состояния GSD-фаз — STATE.md (пишет движок). 
+    docs/memory.md/docs/plan.md — handoff для не-GSD задач и заметок.
+
+### Механизм 1 — память GSD (детерминированная)
+- Файлы: `.planning/STATE.md`, `ROADMAP.md`, `PROJECT.md`.
+- Пишет: движок GSD (`gsd-tools`), НЕ модель.
+- Триггер: запуск `/gsd-*` команд + хуки на события сессии (SessionStart, phase-boundary, graphify).
+
+
+### Механизм 2 — handoff (по правилу AGENTS.md)
+- Файлы: `docs/plan.md`, `docs/memory.md` (из ДЗ#3).
+- Пишет: сама модель (LLM).
+- Триггер: правило в `AGENTS.md` — «после каждой завершённой задачи отметь чекбокс и допиши memory.md».
+- Наблюдение: за ДЗ#6 эти файлы не менялись — GSD пишет в свой `STATE.md`, а не сюда; 
+   чтобы handoff обновился, агента нужно попросить явно:
+
+    ![forced-memory-1.png](screenshots/forced-memory-1.png)
+
+    ![forced-memory-2.png](screenshots/forced-memory-2.png)
+
+### Демонстрация «сохранение → извлечение»
+1. `/gsd-pause-work` — сохраняет состояние (чекпойнт).
+
+    ![gsd-pause-work.png](screenshots/gsd-pause-work.png)
+
+2. Новая сессия → `/gsd-resume-work` — восстанавливается с того же места.
+
+   ![gsd-resume.png](screenshots/gsd-resume.png)
+
+
+## 3. Быстрые команды + hooks
+
+- Команды `/gsd-*` (установлены) + своя `/wrong-branch` (из ДЗ#3).
+- Hooks: хуки GSD + свой плагин `project-guard.ts`.
+
+## 4. Управление контекстом — автосжатие
+
+- **Автосжатие** — встроенный compaction в opencode, включён по умолчанию.
+  срабатывает автоматически, при приближении к лимиту.
+  ![compaction-default-settings.png](screenshots/compaction-default-settings.png)
+- **Принудительное сжатие (слэш-команда)** - встроенная команда compaction в opencode. 
+   Инициирует сжатие контекста.
+  
+ Usage до и после compaction:
+
+  ![usage-before-compact.png](screenshots/usage-before-compact.png)
+
+![compaction.png](screenshots/compaction.png)
+
+  ![usage-after-compact.png](screenshots/usage-after-compact.png)

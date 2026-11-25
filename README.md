@@ -32,8 +32,11 @@ mvn spring-boot:run    # http://localhost:8080
 В проект внедрён GSD-пайплайн (Git. Ship. Done): фазы Discuss → Plan → Execute → Verify → Ship,
 артефакты в `.planning/` (PROJECT / REQUIREMENTS / ROADMAP / STATE), память между сессиями.
 
-- Установка GSD (движок не в git): `npx @opengsd/gsd-core@latest --opencode --local`
+- Установка GSD : `npx @opengsd/gsd-core@latest --opencode --local`
 - Команды: `/gsd-help`, `/gsd-progress`, `/gsd-new-project`, `/gsd-onboard`, `/gsd-discuss-phase`, `/gsd-plan-phase`, `/gsd-execute-phase`, `/gsd-verify-work`
 - Roadmap проекта — 4 фазы (LLM+ввод → Дерево → Персистентность → Карта+история): `.planning/ROADMAP.md`
+- Память — `STATE.md` / `CONTEXT.md` + handoff (`docs/plan.md`, `docs/memory.md`); чекпойнты — `/gsd-pause-work` / `/gsd-resume-work`
+- Hooks — хуки GSD + свой `project-guard.ts`
+- Управление контекстом — встроенное автосжатие opencode (compaction);
 
 Подробный отчёт по ДЗ и инструкция «как повторить проверку» — `docs/about.md`.
