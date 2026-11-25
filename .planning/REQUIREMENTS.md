@@ -71,12 +71,29 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
+| INP-01 | Phase 1 | Pending |
+| INP-02 | Phase 1 | Pending |
+| LLM-01 | Phase 1 | Pending |
+| LLM-02 | Phase 1 | Pending |
+| LLM-03 | Phase 1 | Pending |
+| LLM-04 | Phase 1 | Pending |
+| LLM-05 | Phase 1 | Pending |
+| LLM-06 | Phase 1 | Pending |
+| GRPH-01 | Phase 2 | Pending |
+| GRPH-02 | Phase 2 | Pending |
+| GRPH-03 | Phase 2 | Pending |
+| PERS-01 | Phase 3 | Pending |
+| PERS-02 | Phase 3 | Pending |
+| MAP-01 | Phase 4 | Pending |
+| MAP-02 | Phase 4 | Pending |
+| HIST-01 | Phase 4 | Pending |
+| HIST-02 | Phase 4 | Pending |
 
 **Coverage:**
 - v1 requirements: 16 total
-- Mapped to phases: 0
-- Unmapped: 16 ⚠️
+- Mapped to phases: 16
+- Unmapped: 0 ✓
 
 ---
 *Requirements defined: 2026-11-25*
-*Last updated: 2026-11-25 after initial definition*
+*Last updated: 2026-11-25 after roadmap creation*
