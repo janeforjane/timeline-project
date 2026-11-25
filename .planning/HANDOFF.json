@@ -1,0 +1,47 @@
+{
+  "version": "1.0",
+  "timestamp": "2026-11-25T16:38:12.966Z",
+  "phase": null,
+  "phase_name": "pre-planning (инициализация завершена, Фаза 1 следующая)",
+  "phase_dir": null,
+  "plan": null,
+  "task": null,
+  "total_tasks": null,
+  "status": "paused",
+  "completed_tasks": [],
+  "remaining_tasks": [],
+  "blockers": [
+    {
+      "description": "Глобальные дефолты ~/.gsd/defaults.json не сохранены — доступ к внешней директории запрещён правами opencode (external_directory deny)",
+      "type": "human_action",
+      "workaround": "Разрешить ~/.gsd/** в .opencode/opencode.json, затем /gsd-settings → сохранить дефолты"
+    }
+  ],
+  "async_jobs": [],
+  "human_actions_pending": [
+    {
+      "action": "Решить судьбу незакоммиченных docs/about.md и docs/screenshots/compaction-default-settings.png (вне GSD-сессии)",
+      "context": "Незакоммиченные изменения в рабочем дереве, не относящиеся к инициализации GSD",
+      "blocking": false
+    },
+    {
+      "action": "Опционально: разрешить ~/.gsd/** для сохранения глобальных дефолтов",
+      "context": "Дефолты не записались из-за запрета внешних директорий",
+      "blocking": false
+    }
+  ],
+  "decisions": [
+    { "decision": "Полный MVP как v1", "rationale": "Выбор пользователя (ввод → дерево → карта + история)", "phase": null },
+    { "decision": "PostgreSQL сразу в v1", "rationale": "История и карта хранятся в БД (decision/node/edge)", "phase": null },
+    { "decision": "Core Value: генерация и визуализация равнозначны", "rationale": "Выбор пользователя", "phase": null },
+    { "decision": "model_profile=inherit (DeepSeek)", "rationale": "Сессия на opencode/DeepSeek, тиры Anthropic не применимы", "phase": null },
+    { "decision": "Деплой — российский PaaS (Amvera или аналогичный), fat jar без Docker", "rationale": "Поправка пользователя к изначальному TimeWeb Cloud", "phase": null },
+    { "decision": "Структура фаз — Vertical MVP", "rationale": "Выбор пользователя: сквозные вертикальные срезы", "phase": null }
+  ],
+  "uncommitted_files": [
+    "M docs/about.md",
+    "A docs/screenshots/compaction-default-settings.png"
+  ],
+  "next_action": "Запустить /gsd-discuss-phase 1 (или /gsd-plan-phase 1) для планирования Фазы 1: LLM-слой и ввод решения",
+  "context_notes": "Инициализация проекта завершена: PROJECT.md, config.json, REQUIREMENTS.md (16 v1-требований), ROADMAP.md (4 фазы), STATE.md — все закоммичены. Исследование домена пропущено по выбору пользователя. Режим фаз — MVP (вертикальные срезы). Настройки workflow: research/plan_check/verifier/tdd/code_review/pattern_mapper/nyquist/ui_phase/ui_gate/ai_phase — вкл; model_profile=inherit; use_worktrees=false; intel/graphify — выкл; git branching=none."
+}
