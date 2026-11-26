@@ -81,12 +81,12 @@ JUnit 5 · Checkstyle · Spotless. Агент: OpenCode 1.19.0 на DeepSeek.
 ## Что сделано (по 5 требованиям)
 
 1. **GSD + документы проекта** — установлен `@opengsd/gsd-core` (локально, `--opencode`), проект инициализирован.
-2. **Память** — `STATE.md`/`CONTEXT.md` (GSD) + handoff `docs/plan.md` / `docs/memory.md`.
+2. **Память** — `STATE.md` (GSD) + handoff `docs/plan.md` / `docs/memory.md`.
 3. **Команды + hooks** — `/gsd-*`, плагин `gsd-core.js`, хуки GSD (+ свой `project-guard.ts`).
 4. **Управление контекстом** — compaction + usage до/после.
 5. **Discovery пройден** — требования и roadmap (`.planning/`).
 
-## 1. GSD 
+## 1. GSD: установка и Discovery
 
 **Шаг 0 — установка.** Из корня проекта:
 ```bash
@@ -110,6 +110,12 @@ codebase map
 **Проверка результата.** 
 mvn test и mvn checkstyle:check зелёные; 
 .planning/config.json — inherit, auto_advance: false, tdd: true.
+
+**Ключевые решения Discovery:**
+- Объём v1 — **Полный MVP** (ввод → дерево → карта + история).
+- **PostgreSQL сразу в v1** — история требует персистенции (таблицы `decision`, `node`, `edge`).
+- Структура — **вертикальный MVP** (каждая фаза даёт сквозную возможность).
+- Core Value — LLM-генерация и TVA-визуализация **равнозначны**.
 
 ## 2. Память + чекпойнты
 
